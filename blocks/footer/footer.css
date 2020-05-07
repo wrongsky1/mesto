@@ -1,15 +1,15 @@
 @import url(../footer/__copyright/footer__copyright.css);
 
 .footer {
-    display: flex;
-    width: 100%;
-    margin-top: 66px;
-    margin-bottom: 60px;
+  display: flex;
+  width: 100%;
+  margin-top: 66px;
+  margin-bottom: 60px;
 }
 
 @media screen and (max-width: 640px) {
-    .footer {
-        margin: 48px auto 36px;
-        max-width: 282px;
-    }
+  .footer {
+    margin: 48px auto 36px;
+    max-width: 282px;
   }
+}

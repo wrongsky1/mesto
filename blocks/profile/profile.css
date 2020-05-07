@@ -5,17 +5,17 @@
 @import url(../profile/__edit-button/profile__edit-button.css);
 
 .profile {
-    max-width: 882px;
-    margin: 40px auto 0;
-    display: grid;
-    grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, 500px) minmax(min-content, max-content);
-    grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content);
+  max-width: 882px;
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, 500px) minmax(min-content, max-content);
+  grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content);
 }
 
 @media screen and (max-width: 640px) {
-    .profile {
-        margin-top: 32px;
-        grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content);
-        grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content);
-    }
+  .profile {
+    margin-top: 32px;
+    grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content);
+    grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content);
+  }
 }

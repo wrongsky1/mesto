@@ -3,14 +3,12 @@
 @import url(../element/__like-button/element__like-button.css);
 
 .element {
-    margin: 0;
-    max-width: 282px;
-    display: grid;
-    grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content);
-    grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content);
-    grid-gap: 0;
-    background: #FFFFFF;
-    border-radius: 10px;
+  margin: 0;
+  max-width: 282px;
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content);
+  grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content);
+  grid-gap: 0;
+  background: #FFFFFF;
+  border-radius: 10px;
 }
-
-
