@@ -1,0 +1,17 @@
+.element__like-button {
+    grid-row: 2/3;
+    grid-column: 2/3;
+    width: 21px;
+    height: 18px;
+    margin: 0;
+    margin-top: 30px;
+    margin-right: 22px;
+    padding-bottom: 32px;
+    align-self: start;
+    justify-self: end;
+}
+
+.element__like-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

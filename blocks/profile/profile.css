@@ -1,0 +1,21 @@
+@import url(../profile/__avatar/profile__avatar.css);
+@import url(../profile/__info-name/profile__info-name.css);
+@import url(../profile/__info-job/profile__info-job.css);
+@import url(../profile/__add-button/profile__add-button.css);
+@import url(../profile/__edit-button/profile__edit-button.css);
+
+.profile {
+    max-width: 882px;
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, 500px) minmax(min-content, max-content);
+    grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content);
+}
+
+@media screen and (max-width: 640px) {
+    .profile {
+        margin-top: 32px;
+        grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content);
+        grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content);
+    }
+}
