@@ -1,5 +1,4 @@
 .popup__close-button {
-
     border: 0;
     width: 41px;
     height: 41px;
@@ -16,5 +15,3 @@
   opacity: 0.6;
   cursor: pointer;
 }
-
-/* <img src="./images/popup-close-button.png" alt="Закрыть"> */

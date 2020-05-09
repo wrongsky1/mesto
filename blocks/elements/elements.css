@@ -2,26 +2,22 @@
   max-width: 100%;
   margin: 50px auto 0;
   display: grid;
-  grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content);
-  grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content);
+  grid-template-columns: repeat(3, minmax(min-content, max-content));
+  grid-template-rows: repeat(2, minmax(min-content, max-content));
   grid-column-gap: 18px;
   grid-row-gap: 20px;
 }
 
 @media screen and (max-width: 1000px) {
   .elements {
-    grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content);
-    grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content);
-    grid-column-gap: 18px;
-    grid-row-gap: 20px;
+    grid-template-columns: repeat(2, minmax(min-content, max-content));
+    grid-template-rows: repeat(3, minmax(min-content, max-content));
   }
 }
 
 @media screen and (max-width: 640px) {
   .elements {
     grid-template-columns: minmax(min-content, max-content);
-    grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content);
-    grid-column-gap: 18px;
-    grid-row-gap: 20px;
+    grid-template-rows: repeat(6, minmax(min-content, max-content));
   }
 }

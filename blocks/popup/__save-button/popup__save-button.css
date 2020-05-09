@@ -6,12 +6,15 @@
     max-width: 358px;
     padding: 19px 0;
     font-family: Inter;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 22px;
-text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+}
 
-color: #FFFFFF;
-
+.popup__save-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
