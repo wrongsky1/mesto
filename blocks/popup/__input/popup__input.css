@@ -1,4 +1,4 @@
-.popup__about {
+.popup__input {
   margin: 0;
   padding: 0;
   margin: 30px 36px 0;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 730px) {
-    .popup__about {
-      max-width: 235px;
-    }
+  .popup__input {
+    max-width: 235px;
+  }
 }
