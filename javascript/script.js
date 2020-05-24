@@ -30,7 +30,7 @@ closePopupButton.addEventListener("click", popDown, false);
 formElement.addEventListener('submit', formSubmitHandler);
 
 
-//реализация добавления карточки с фото
+//реализация добавления карточки с фото GridPhoto
 
 const initialCards = [
     {
@@ -89,7 +89,7 @@ initialCards.forEach(function(item) {
     makeCard(item.name, item.link);
 });
 
-//функция добавления карточки
+//функция добавления карточки addPlace
 function formSubmitHandlerAddPlace(evt) {
     evt.preventDefault(); //отмена стандартного submit
     let cardTemplate = document.querySelector('.element-template').content; //заготовка
@@ -110,7 +110,15 @@ function formSubmitHandlerAddPlace(evt) {
     elementsContainer.prepend(elementCopy);
     popDownAddPlace();
 }
-//работа кнопок 
+//работа кнопок addPlace 
 addButton.addEventListener("click", popUpAddPlace, false);
 closePopAddPlace.addEventListener("click", popDownAddPlace, false);
 formAddPlace.addEventListener('submit', formSubmitHandlerAddPlace);
+
+//реализация удаления карточки
+const gridElements = document.querySelector('.elements');
+gridElements.addEventListener('click', function (evt) {
+    const eventTarget = evt.target;
+    if (eventTarget.className != 'element__close-button') return;
+    eventTarget.closest('.element').remove();
+});
