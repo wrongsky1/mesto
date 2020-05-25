@@ -3,8 +3,9 @@
 .footer {
   display: flex;
   width: 100%;
-  margin-top: 66px;
+  margin-top: auto;
   margin-bottom: 60px;
+  flex-shrink: 0;
 }
 
 @media screen and (max-width: 1000px) {
@@ -15,7 +16,7 @@
 
 @media screen and (max-width: 640px) {
   .footer {
-    margin: 48px auto 36px;
+    margin: auto auto 36px;
     max-width: 282px;
   }
 }
