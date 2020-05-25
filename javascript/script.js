@@ -29,9 +29,6 @@ editButton.addEventListener("click", popUp, false);
 closePopupButton.addEventListener("click", popDown, false);
 formElement.addEventListener('submit', formSubmitHandler);
 
-
-//реализация добавления карточки с фото GridPhoto
-
 const initialCards = [
     {
         name: 'Архыз',
@@ -63,22 +60,33 @@ const addButton = document.querySelector('.profile__add-button');
 const closePopAddPlace = document.querySelector('#close-addPlace');
 const popAddPlace = document.querySelector('#popup-addPlace');
 const formAddPlace = document.querySelector('#form-addPlace');
+const elementsContainer = document.querySelector('.elements');
+const cardTemplate = document.querySelector('.element-template').content;
+const element = cardTemplate.querySelector('.element');
+const gridElements = document.querySelector('.elements');
+const popPictureZoom = document.querySelector('#popup-picture');
+const closePictureZoom = document.querySelector('#close-pictureZoom');
+
 function popUpAddPlace() {
     popAddPlace.classList.add('popup_opened');
 }
+
 function popDownAddPlace() {
     popAddPlace.classList.remove('popup_opened');
 }
-//стартовый набор карточек из масива
-//контейнер для карточки
-const elementsContainer = document.querySelector('.elements');
-// клонирование элемента 
+
+function popUpPictureZoom() {
+    popPictureZoom.classList.add('popup_opened');
+}
+
+function popDownPictureZoom() {
+    popPictureZoom.classList.remove('popup_opened');
+}
+
 function makeCard (cardName, cardLink) {
-    let cardTemplate = document.querySelector('.element-template').content; //заготовка
-    let element = cardTemplate.querySelector('.element');
-    let elementCopy = element.cloneNode(true); //копируем шаблон
-    elementCopy.querySelector('.element__picture').src = cardLink; //поле картинки в шаблоне
-    elementCopy.querySelector('.element__description').textContent = cardName; //поле описания картинки в шаблоне
+    const elementCopy = element.cloneNode(true);
+    elementCopy.querySelector('.element__picture').src = cardLink;
+    elementCopy.querySelector('.element__description').textContent = cardName;
     elementCopy.querySelector('.element__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like-button_active');
     });
@@ -89,18 +97,13 @@ initialCards.forEach(function(item) {
     makeCard(item.name, item.link);
 });
 
-//функция добавления карточки addPlace
 function formSubmitHandlerAddPlace(evt) {
     evt.preventDefault(); //отмена стандартного submit
-    let cardTemplate = document.querySelector('.element-template').content; //заготовка
-    let element = cardTemplate.querySelector('.element');
-    let elementCopy = element.cloneNode(true); //копируем шаблон
-
+    const elementCopy = element.cloneNode(true);
     const titleInput = document.querySelector('#picture-title');
     const linkInput = document.querySelector('#picture-link');
-    const elementImage = elementCopy.querySelector(".element__picture");
-    const elementTitle = elementCopy.querySelector(".element__description");
-
+    const elementImage = elementCopy.querySelector('.element__picture');
+    const elementTitle = elementCopy.querySelector('.element__description');
     elementImage.src = linkInput.value;
     elementTitle.textContent = titleInput.value;
 
@@ -110,15 +113,19 @@ function formSubmitHandlerAddPlace(evt) {
     elementsContainer.prepend(elementCopy);
     popDownAddPlace();
 }
-//работа кнопок addPlace 
+
 addButton.addEventListener("click", popUpAddPlace, false);
 closePopAddPlace.addEventListener("click", popDownAddPlace, false);
 formAddPlace.addEventListener('submit', formSubmitHandlerAddPlace);
-
-//реализация удаления карточки
-const gridElements = document.querySelector('.elements');
+closePictureZoom.addEventListener("click", popDownPictureZoom, false);
 gridElements.addEventListener('click', function (evt) {
     const eventTarget = evt.target;
-    if (eventTarget.className != 'element__close-button') return;
-    eventTarget.closest('.element').remove();
+    if (eventTarget.className === 'element__close-button') {
+        eventTarget.closest('.element').remove();
+    } else if (eventTarget.className === 'element__picture') {
+        document.querySelector('.popup__picture-zoom').src = eventTarget.src;
+        document.querySelector('.popup__picture-text').textContent = eventTarget.closest('.element').querySelector('.element__description').textContent;
+        popUpPictureZoom();
+    }
+    return;
 });

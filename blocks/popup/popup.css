@@ -4,6 +4,9 @@
 @import url(./__input/popup__input.css);
 @import url(./__save-button/popup__save-button.css);
 @import url(./__close-button/popup__close-button.css);
+@import url(./__picture/popup__picture.css);
+@import url(./__picture-zoom/popup__picture-zoom.css);
+@import url(./__picture-text/popup__picture-text.css);
 
 .popup {
   width: 100%;
@@ -13,4 +16,8 @@
   justify-content: center;
   align-items: center;
   position: fixed;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
