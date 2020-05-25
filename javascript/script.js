@@ -1,4 +1,3 @@
-//реализация редактирования профиля
 const editButton = document.querySelector('.profile__edit-button');
 const closePopupButton = document.querySelector('#close-profile');
 const pop = document.querySelector('#popup-profile');
@@ -16,6 +15,8 @@ function popUp() {
 
 function popDown() {
     pop.classList.remove('popup_opened');
+    pop.classList.add('popup_closed');
+    setTimeout (() => {pop.classList.remove('popup_closed')}, 1000);
 }
 
 function formSubmitHandler (evt) {
@@ -73,6 +74,8 @@ function popUpAddPlace() {
 
 function popDownAddPlace() {
     popAddPlace.classList.remove('popup_opened');
+    popAddPlace.classList.add('popup_closed');
+    setTimeout (() => {popAddPlace.classList.remove('popup_closed')}, 1000);
 }
 
 function popUpPictureZoom() {
@@ -81,6 +84,8 @@ function popUpPictureZoom() {
 
 function popDownPictureZoom() {
     popPictureZoom.classList.remove('popup_opened');
+    popPictureZoom.classList.add('popup_closed');
+    setTimeout (() => {popPictureZoom.classList.remove('popup_closed')}, 1000);
 }
 
 function makeCard (cardName, cardLink) {
@@ -98,7 +103,7 @@ initialCards.forEach(function(item) {
 });
 
 function formSubmitHandlerAddPlace(evt) {
-    evt.preventDefault(); //отмена стандартного submit
+    evt.preventDefault();
     const elementCopy = element.cloneNode(true);
     const titleInput = document.querySelector('#picture-title');
     const linkInput = document.querySelector('#picture-link');

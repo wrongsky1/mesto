@@ -1,8 +1,11 @@
+@keyframes open {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
 .popup_opened {
   display: flex;
+  animation: open 500ms;
   opacity: 1;
-  
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s, opacity 0.5s linear;
 }
+
