@@ -5,3 +5,7 @@
   height: 282px;
   color: transparent;
 }
+
+.element__picture:hover {
+  cursor: pointer;
+}
