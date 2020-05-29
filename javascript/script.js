@@ -69,7 +69,7 @@ function makeCard(cardName, cardLink) {
     return(elementCopy);
 };
 
-function addCard(elementCopy){
+function addCard(elementCopy, elementsContainer){
     elementsContainer.prepend(elementCopy);
 }
 
@@ -77,14 +77,14 @@ function formSubmitHandlerAddPlace(evt) {
     evt.preventDefault();
     const cardLink = document.querySelector('.popup__input-link').value;
     const cardName = document.querySelector('.popup__input-title').value;
-    makeCard(cardName, cardLink);
-    addCard(makeCard(cardName, cardLink));
+    const newCard = makeCard(cardName, cardLink);
+    addCard(newCard, elementsContainer);
     openClosePopup(popupAddPlace);
 };
 
 initialCards.forEach(function(item) {
-    makeCard(item.name, item.link);
-    addCard(makeCard(item.name, item.link));
+    const initialCard = makeCard(item.name, item.link);
+    addCard(initialCard, elementsContainer);
 });
 
 editButton.addEventListener('click', function() {
