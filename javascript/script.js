@@ -20,13 +20,13 @@ const element = cardTemplate.querySelector('.element');
 
 function closePopup(popup) {
     document.removeEventListener('keydown', addListenerEsc);
-    popup.removeEventListener('click', addListenerOverlay);
+    popup.removeEventListener('mousedown', addListenerOverlay);
     popup.classList.remove('popup_opened');
 };
 
 function openPopup(popup) {
     document.addEventListener('keydown', addListenerEsc);
-    popup.addEventListener('click', addListenerOverlay);
+    popup.addEventListener('mousedown', addListenerOverlay);
     popup.classList.add('popup_opened');
 };
 

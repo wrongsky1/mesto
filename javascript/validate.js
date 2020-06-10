@@ -7,12 +7,6 @@ const options = {
     errorClass: 'popup__error_visible'
 };
 
-const formElement = document.querySelector(options.formSelector);
-const inputElement = formElement.querySelector(options.inputSelector);
-const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
-const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-const buttonElement = formElement.querySelector(options.submitButtonSelector);
-
 const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(options.inputErrorClass);
@@ -61,13 +55,13 @@ const setEventListeners = (formElement) => {
     });
   };
 
-const enableValidation = () => {
+const enableValidation = (options) => {
     const formList = Array.from(document.querySelectorAll(options.formSelector));
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
       });
-      setEventListeners(formElement);
+      setEventListeners(formElement, options);
     });
   };
   
