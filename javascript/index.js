@@ -1,7 +1,10 @@
+import Card from './Card.js';
+import initialCards from './initialCards.js';
+
 const editButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_profile');
 const closeProfileButton = document.querySelector('.popup_close-profile');
-const formProfile = document.querySelector('.popup_form-profile');
+const formProfile = document.querySelector('.popup_form-profile');3.
 const nameInput = document.querySelector('.popup__input-name');
 const jobInput = document.querySelector('.popup__input-job');
 const elName = document.querySelector('.profile__info-name');
@@ -14,9 +17,10 @@ const closePopAddPlace = document.querySelector('.popup_close-add-place');
 const formAddPlace = document.querySelector('.popup_form-add-place');
 const popupPicture = document.querySelector('.popup_picture-zoom');
 const closePictureZoom = document.querySelector('.popup_close-picture-zoom');
+
 const elementsContainer = document.querySelector('.elements');
-const cardTemplate = document.querySelector('.element-template').content;
-const element = cardTemplate.querySelector('.element');
+const cardTemplate = document.querySelector('.element-template'); 
+
 
 function closePopup(popup) {
     document.removeEventListener('keydown', addListenerEsc);
@@ -58,46 +62,16 @@ function formSubmitHandler (evt) {
     closePopup(popupProfile);
 };
 
-function addListenerLikeButton (elementCopy) {
-    elementCopy.querySelector('.element__like-button').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__like-button_active');
-    });
-};
-
-function addListenerDeleteCardButton (elementCopy) {
-    elementCopy.querySelector('.element__close-button').addEventListener('click', function (evt) {
-        evt.target.closest('.element').remove();
-    });
-};
-
-function addListenerPictureZoom (elementCopy, cardName, cardLink) {
-    elementCopy.querySelector('.element__picture').addEventListener('click', function () {
-        document.querySelector('.popup__picture-zoom').src = cardLink;
-        document.querySelector('.popup__picture-zoom').alt = cardName;
-        document.querySelector('.popup__picture-text').textContent = cardName;
-        openPopup(popupPicture);
-     });
-};
-
-function makeCard(cardName, cardLink) {
-    const elementCopy = element.cloneNode(true);
-    elementCopy.querySelector('.element__picture').src = cardLink;
-    elementCopy.querySelector('.element__description').textContent = cardName;
-    addListenerLikeButton (elementCopy);
-    addListenerDeleteCardButton (elementCopy);
-    addListenerPictureZoom (elementCopy, cardName, cardLink);
-    return(elementCopy);
-};
-
-function addCard(elementCopy, elementsContainer){
-    elementsContainer.prepend(elementCopy);
+function addCard(element, elementsContainer){
+    elementsContainer.prepend(element);
 };
 
 function formSubmitHandlerAddPlace(evt) {
     evt.preventDefault();
     const cardLink = inputLinkAddPlace.value;
     const cardName = inputTitleAddPlace.value;
-    const newCard = makeCard(cardName, cardLink);
+    const newElementCard = new Card (cardTemplate, cardName, cardLink); //makeCard(cardName, cardLink);
+    const newCard = newElementCard.makeCard();
     addCard(newCard, elementsContainer);
     closePopup(popupAddPlace);
     clearAddPlaceForm();
@@ -118,8 +92,9 @@ function addListenerOverlay (evt) {
 };
 
 initialCards.forEach(function(item) {
-    const initialCard = makeCard(item.name, item.link);
-    addCard(initialCard, elementsContainer);
+    const initialCard = new Card (cardTemplate, item.name, item.link);
+    const elem = initialCard.makeCard();
+    addCard(elem, elementsContainer);
 });
 
 editButton.addEventListener('click', function() {
