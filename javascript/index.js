@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import initialCards from './initialCards.js';
+import { options, FormValidator } from './FormValidator.js';
 
 const editButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_profile');
@@ -20,7 +21,6 @@ const closePictureZoom = document.querySelector('.popup_close-picture-zoom');
 
 const elementsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.element-template'); 
-
 
 function closePopup(popup) {
     document.removeEventListener('keydown', addListenerEsc);
@@ -70,7 +70,7 @@ function formSubmitHandlerAddPlace(evt) {
     evt.preventDefault();
     const cardLink = inputLinkAddPlace.value;
     const cardName = inputTitleAddPlace.value;
-    const newElementCard = new Card (cardTemplate, cardName, cardLink); //makeCard(cardName, cardLink);
+    const newElementCard = new Card (cardTemplate, cardName, cardLink); 
     const newCard = newElementCard.makeCard();
     addCard(newCard, elementsContainer);
     closePopup(popupAddPlace);
@@ -122,3 +122,8 @@ formAddPlace.addEventListener('submit', formSubmitHandlerAddPlace);
 closePictureZoom.addEventListener('click', function() {
     closePopup(popupPicture);
 });
+
+const formProfileModal = new FormValidator (options, formProfile);
+const formAddPlaceModal = new FormValidator (options, formAddPlace);
+formProfileModal.enableValidation();
+formAddPlaceModal.enableValidation();
