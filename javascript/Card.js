@@ -1,38 +1,16 @@
-const popupPicture = document.querySelector('.popup_picture-zoom');
-
-function closePopup(popup) {
-    document.removeEventListener('keydown', addListenerEsc);
-    popup.removeEventListener('mousedown', addListenerOverlay);
-    popup.classList.remove('popup_opened');
-};
-    
-function openPopup(popup) {
-    document.addEventListener('keydown', addListenerEsc);
-    popup.addEventListener('mousedown', addListenerOverlay);
-    popup.classList.add('popup_opened');
-};
-
-function addListenerEsc (evt) {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (evt.key === 'Escape' && openedPopup) {
-        closePopup(openedPopup);
-    } 
-};
-    
-function addListenerOverlay (evt) {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (evt.target.classList.contains('popup') && openedPopup) {
-        closePopup(openedPopup);
-    } 
-};
+import { popupPicture, openedPopup, closePopup, openPopup, addListenerEsc, addListenerOverlay } from './utils.js'
 
 export default class Card {
     constructor (cardTemplate, cardName, cardLink) {
         this._cardName = cardName;
         this._cardLink = cardLink;
         this._cardTemplate = cardTemplate;
+    };
+
+    _getTemplate () {
         this._elementCopy = this._cardTemplate.content.querySelector('.element').cloneNode(true);
-    }
+        return this._elementCopy;
+    };
    
     _addListenerLikeButton () {
         this._elementCopy.querySelector('.element__like-button').addEventListener('click', (evt) => {
@@ -47,20 +25,26 @@ export default class Card {
     };
 
     _addListenerPictureZoom () {
+        const picture = document.querySelector('.popup__picture-zoom');
         this._elementCopy.querySelector('.element__picture').addEventListener('click', () => {
-            document.querySelector('.popup__picture-zoom').src = this._cardLink;
-            document.querySelector('.popup__picture-zoom').alt = this._cardName;
+            picture.src = this._cardLink;
+            picture.alt = this._cardName;
             document.querySelector('.popup__picture-text').textContent = this._cardName;
             openPopup(popupPicture);
         });
     };
 
-    makeCard() {
-        this._elementCopy.querySelector('.element__picture').src = this._cardLink;
-        this._elementCopy.querySelector('.element__description').textContent = this._cardName;
+    _setEventListeners () {
         this._addListenerLikeButton ();
         this._addListenerDeleteCardButton ();
         this._addListenerPictureZoom ();
+    }
+
+    makeCard() {
+        this._getTemplate ();
+        this._elementCopy.querySelector('.element__picture').src = this._cardLink;
+        this._elementCopy.querySelector('.element__description').textContent = this._cardName;
+        this._setEventListeners ();
         return(this._elementCopy);
     };
 }

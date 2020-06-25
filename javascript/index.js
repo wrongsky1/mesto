@@ -1,6 +1,7 @@
 import Card from './Card.js';
 import initialCards from './initialCards.js';
-import { options, FormValidator } from './FormValidator.js';
+import FormValidator from './FormValidator.js';
+import { popupPicture, openedPopup, closePopup, openPopup, addListenerEsc, addListenerOverlay, options } from './utils.js';
 
 const editButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_profile');
@@ -16,23 +17,9 @@ const inputTitleAddPlace = document.querySelector('.popup__input-title');
 const inputLinkAddPlace = document.querySelector('.popup__input-link');
 const closePopAddPlace = document.querySelector('.popup_close-add-place');
 const formAddPlace = document.querySelector('.popup_form-add-place');
-const popupPicture = document.querySelector('.popup_picture-zoom');
 const closePictureZoom = document.querySelector('.popup_close-picture-zoom');
-
 const elementsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.element-template'); 
-
-function closePopup(popup) {
-    document.removeEventListener('keydown', addListenerEsc);
-    popup.removeEventListener('mousedown', addListenerOverlay);
-    popup.classList.remove('popup_opened');
-};
-
-function openPopup(popup) {
-    document.addEventListener('keydown', addListenerEsc);
-    popup.addEventListener('mousedown', addListenerOverlay);
-    popup.classList.add('popup_opened');
-};
 
 function profileInputs() {
     nameInput.value = elName.textContent;
@@ -75,20 +62,6 @@ function formSubmitHandlerAddPlace(evt) {
     addCard(newCard, elementsContainer);
     closePopup(popupAddPlace);
     clearAddPlaceForm();
-};
-
-function addListenerEsc (evt) {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (evt.key === 'Escape' && openedPopup) {
-        closePopup(openedPopup);
-    } 
-};
-
-function addListenerOverlay (evt) {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (evt.target.classList.contains('popup') && openedPopup) {
-        closePopup(openedPopup);
-    } 
 };
 
 initialCards.forEach(function(item) {
