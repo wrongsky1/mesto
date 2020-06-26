@@ -1,12 +1,12 @@
 import Card from './Card.js';
 import initialCards from './initialCards.js';
 import FormValidator from './FormValidator.js';
-import { popupPicture, openedPopup, closePopup, openPopup, addListenerEsc, addListenerOverlay, options } from './utils.js';
+import { popupPicture, closePopup, openPopup, options } from './utils.js';
 
 const editButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_profile');
 const closeProfileButton = document.querySelector('.popup_close-profile');
-const formProfile = document.querySelector('.popup_form-profile');3.
+const formProfile = document.querySelector('.popup_form-profile');
 const nameInput = document.querySelector('.popup__input-name');
 const jobInput = document.querySelector('.popup__input-job');
 const elName = document.querySelector('.profile__info-name');

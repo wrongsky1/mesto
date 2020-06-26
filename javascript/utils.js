@@ -23,14 +23,14 @@ function openPopup(popup) {
 };
 
 function addListenerEsc (evt) {
-    const openedPopup = document.querySelector('.popup_opened'); //если вынести эту переменную в начало файла и удалить из функции, то данная функция не работает.
+    const openedPopup = document.querySelector('.popup_opened'); //если вынести эту переменную в начало файла и удалить из функции, то данная функция не работает (тк элемент отсутствует в DOM до определенного момента).
     if (evt.key === 'Escape' && openedPopup) {
         closePopup(openedPopup);
     } 
 };
     
 function addListenerOverlay (evt) {
-    const openedPopup = document.querySelector('.popup_opened'); //если вынести эту переменную в начало файла и удалить из функции, то данная функция не работает.
+    const openedPopup = document.querySelector('.popup_opened'); //если вынести эту переменную в начало файла и удалить из функции, то данная функция не работает (тк элемент отсутствует в DOM до определенного момента).
     if (evt.target.classList.contains('popup') && openedPopup) {
         closePopup(openedPopup);
     } 

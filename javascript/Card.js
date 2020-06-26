@@ -1,4 +1,4 @@
-import { popupPicture, openedPopup, closePopup, openPopup, addListenerEsc, addListenerOverlay } from './utils.js'
+import { popupPicture, openPopup } from './utils.js'
 
 export default class Card {
     constructor (cardTemplate, cardName, cardLink) {
