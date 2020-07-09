@@ -4,11 +4,7 @@
   "description": "sample1",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "build": "rm -rf dist && webpack",
-=======
     "build": "webpack",
->>>>>>> develop
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
