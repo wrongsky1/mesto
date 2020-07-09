@@ -1,4 +1,4 @@
-import {options} from './utils.js'
+import {options} from '../utils/constants.js';
 
 export default class FormValidator {
     constructor (options, formElement) {
