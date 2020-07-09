@@ -1,43 +1,30 @@
-import "./index.css"
-import {initialCards} from "../utils/initialСards.js"
-import Card from "../components/Card.js"
-import FormValidator from "../components/FormValidator.js"
-import Section from "../components/Section.js"
-import PopupWithImage from "../components/PopupWithImage.js"
-import PopupWithForm from "../components/PopupWithForm.js"
-import UserInfo from '../components/UserInfo.js'
+//import "./index.css";
+import {initialCards} from '../utils/initialCards.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
+import {
+    options,
+    popupPicture,
+    editButton,
+    popupProfile,
+    formProfile,
+    nameInput,
+    jobInput,
+    elName,
+    elJob,
+    addButton,
+    popupAddPlace,
+    inputTitleAddPlace,
+    inputLinkAddPlace,
+    formAddPlace
+  } from '../utils/constants.js';
 
-
-
-
-
-/*import Card from './Card.js';
-import initialCards from './initialCards.js';
-import FormValidator from './FormValidator.js';
-import { popupPicture, closePopup, openPopup, options } from './utils.js';
-
-const editButton = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.popup_profile');
-const closeProfileButton = document.querySelector('.popup_close-profile');
-const formProfile = document.querySelector('.popup_form-profile');
-const nameInput = document.querySelector('.popup__input-name');
-const jobInput = document.querySelector('.popup__input-job');
-const elName = document.querySelector('.profile__info-name');
-const elJob = document.querySelector('.profile__info-job');
-const addButton = document.querySelector('.profile__add-button');
-const popupAddPlace = document.querySelector('.popup_add-place');
-const inputTitleAddPlace = document.querySelector('.popup__input-title');
-const inputLinkAddPlace = document.querySelector('.popup__input-link');
-const closePopAddPlace = document.querySelector('.popup_close-add-place');
-const formAddPlace = document.querySelector('.popup_form-add-place');
-const closePictureZoom = document.querySelector('.popup_close-picture-zoom');
-const elementsContainer = document.querySelector('.elements');
-const cardTemplate = document.querySelector('.element-template'); 
-
-function profileInputs() {
-    nameInput.value = elName.textContent;
-    jobInput.value = elJob.textContent;
+function clearProfileForm() {
     document.querySelector('.popup__save-button_profile').classList.remove('popup__button_disabled');
     document.querySelector('.popup__save-button_profile').removeAttribute('disabled');
     nameInput.classList.remove('popup__input_type_error');
@@ -55,63 +42,65 @@ function clearAddPlaceForm() {
     inputTitleAddPlace.classList.remove('popup__input_type_error');
     document.querySelector('.popup__save-button_add-place').classList.add('popup__button_disabled');
 };
+  
+function renderInitialCards(item) {
+    const card = new Card(item, '.element-template', {
+      handleCardClick: () => {
+        popupWithImage.open(item.name, item.link);
+      }
+    });
+    defaultCards.addItem(card.generateCard());
+  }
+  
+const defaultCards = new Section({
+    items: initialCards,
+    renderer: ((item) => {
+      renderInitialCards(item);
+    })
+  }, '.elements');
+  
+defaultCards.renderItems();
+  
+const popupWithImage = new PopupWithImage(popupPicture);
+popupWithImage.setEventListeners();
 
-function formSubmitHandler (evt) {
-    evt.preventDefault();
-    elName.textContent = nameInput.value;
-    elJob.textContent = jobInput.value;
-    closePopup(popupProfile);
-};
-
-function addCard(element, elementsContainer){
-    elementsContainer.prepend(element);
-};
-
-function formSubmitHandlerAddPlace(evt) {
-    evt.preventDefault();
-    const cardLink = inputLinkAddPlace.value;
-    const cardName = inputTitleAddPlace.value;
-    const newElementCard = new Card (cardTemplate, cardName, cardLink); 
-    const newCard = newElementCard.makeCard();
-    addCard(newCard, elementsContainer);
-    closePopup(popupAddPlace);
-    clearAddPlaceForm();
-};
-
-initialCards.forEach(function(item) {
-    const initialCard = new Card (cardTemplate, item.name, item.link);
-    const elem = initialCard.makeCard();
-    addCard(elem, elementsContainer);
+const addPopup = new PopupWithForm(popupAddPlace, {
+    handleFormSubmit: (item) => {
+      const newItem = {name: inputTitleAddPlace.value, link: inputLinkAddPlace.value};
+      renderInitialCards(newItem);
+    }
+  });
+  
+addPopup.setEventListeners();
+  
+const userInfo = new UserInfo({
+    elName: elName,
+    elJob: elJob
+  });
+  
+const editPopup = new PopupWithForm(popupProfile, {
+    handleFormSubmit: (item) => {
+      const newData = {name: nameInput.value, job: jobInput.value};
+      userInfo.setUserInfo(newData);
+    }
+  });
+  
+editPopup.setEventListeners();
+  
+editButton.addEventListener('click', () => {
+    const profileInfo = userInfo.getUserInfo();
+    nameInput.value = profileInfo.name;
+    jobInput.value = profileInfo.job;
+    clearProfileForm();
+    editPopup.open();
 });
-
-editButton.addEventListener('click', function() {
-    profileInputs();
-    openPopup(popupProfile);
-});
-
-closeProfileButton.addEventListener('click', function() {
-    closePopup(popupProfile);
-});
-
-formProfile.addEventListener('submit', formSubmitHandler);
-
-addButton.addEventListener('click', function() {
-    clearAddPlaceForm();
-    openPopup(popupAddPlace);
-});
-
-closePopAddPlace.addEventListener('click', function() {
-    closePopup(popupAddPlace);
-});
-
-formAddPlace.addEventListener('submit', formSubmitHandlerAddPlace);
-
-closePictureZoom.addEventListener('click', function() {
-    closePopup(popupPicture);
+  
+addButton.addEventListener('click', () => {
+    clearAddPlaceForm()
+    addPopup.open();
 });
 
 const formProfileModal = new FormValidator (options, formProfile);
 const formAddPlaceModal = new FormValidator (options, formAddPlace);
 formProfileModal.enableValidation();
 formAddPlaceModal.enableValidation();
-*/
