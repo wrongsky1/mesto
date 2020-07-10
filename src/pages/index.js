@@ -12,6 +12,7 @@ import {
     popupPicture,
     editButton,
     popupProfile,
+    saveButtonProfile,
     formProfile,
     nameInput,
     jobInput,
@@ -25,8 +26,8 @@ import {
   } from '../utils/constants.js';
 
 function clearProfileForm() {
-    document.querySelector('.popup__save-button_profile').classList.remove('popup__button_disabled');
-    document.querySelector('.popup__save-button_profile').removeAttribute('disabled');
+    saveButtonProfile.classList.remove('popup__button_disabled');
+    saveButtonProfile.removeAttribute('disabled');
     nameInput.classList.remove('popup__input_type_error');
     jobInput.classList.remove('popup__input_type_error');
     document.querySelector('#profile-name-error').textContent = '';
@@ -65,7 +66,7 @@ const popupWithImage = new PopupWithImage(popupPicture);
 popupWithImage.setEventListeners();
 
 const addPopup = new PopupWithForm(popupAddPlace, {
-    handleFormSubmit: (item) => {
+    handleFormSubmit: () => {
       const newItem = {name: inputTitleAddPlace.value, link: inputLinkAddPlace.value};
       renderInitialCards(newItem);
     }
@@ -79,7 +80,7 @@ const userInfo = new UserInfo({
   });
   
 const editPopup = new PopupWithForm(popupProfile, {
-    handleFormSubmit: (item) => {
+    handleFormSubmit: () => {
       const newData = {name: nameInput.value, job: jobInput.value};
       userInfo.setUserInfo(newData);
     }

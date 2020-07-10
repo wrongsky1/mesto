@@ -13,6 +13,7 @@ export const openedPopup = document.querySelector('.popup_opened');
 
 export const editButton = document.querySelector('.profile__edit-button');
 export const popupProfile = document.querySelector('.popup_profile');
+export const saveButtonProfile = document.querySelector('.popup__save-button_profile');
 
 export const formProfile = document.querySelector('.popup_form-profile');
 export const nameInput = document.querySelector('.popup__input-name');

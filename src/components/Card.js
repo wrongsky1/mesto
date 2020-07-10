@@ -10,13 +10,13 @@ export default class Card {
       this._element.querySelector('.element__like-button').addEventListener('click', (evt) => {
           evt.target.classList.toggle('element__like-button_active');
       });
-    };
+    }
 
     _addListenerDeleteCardButton () {
       this._element.querySelector('.element__close-button').addEventListener('click', (evt) => {
           evt.target.closest('.element').remove();
       });
-    };
+    }
   
     _setEventListeners() {
       this._addListenerLikeButton ();
