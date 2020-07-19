@@ -37,7 +37,10 @@
       <div class="element">
         <img class="element__picture" alt="Изображение локации указанной в описаннии к фотографии">
         <p class="element__description"></p>
-        <button class="element__like-button" type="button"></button>
+        <div class="element__like-container">
+          <button class="element__like-button" type="button"></button>
+          <span class="elements__like-counter">0</span>
+        </div>
         <button class="element__close-button" type="button"></button>
       </div>
     </template>
@@ -77,5 +80,28 @@
         <button class="popup__close-button popup_close-picture-zoom" type="button"></button>
       </div>
     </section>
+
+    <section class="popup popup_avatar-edit">
+      <div class="popup__container">
+        <form class="popup__form popup_form-avatar-edit">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input id="avatar-edit-link" class="popup__input popup__input-avatar" type="url" placeholder="Ссылка на картинку" name="avatar-edit-link" required>
+          <span id="avatar-edit-link-error" class="popup__error_visible"></span>
+          <button class="popup__save-button popup__save-button_avatar-edit popup__button_disabled" type="submit" disabled>Сохранить</button>
+        </form>
+        <button class="popup__close-button popup_close-avatar-edit" type="button"></button>
+      </div>
+    </section>
+
+    <section class="popup popup_avatar-delete">
+      <div class="popup__container">
+        <form class="popup__form popup_form-avatar-delete">
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button class="popup__save-button" disabled type="submit">Да</button>
+        </form>
+        <button class="popup__close-button popup_close-avatar-delete" type="button"></button>
+      </div>
+    </section>
+
 </body>
 </html>
