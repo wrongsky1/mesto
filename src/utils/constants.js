@@ -6,26 +6,44 @@ export const options = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 };
-
-export const popupPicture = document.querySelector('.popup_picture-zoom');
-
-export const openedPopup = document.querySelector('.popup_opened');
-
+// кнопки
 export const editButton = document.querySelector('.profile__edit-button');
-export const popupProfile = document.querySelector('.popup_profile');
-export const saveButtonProfile = document.querySelector('.popup__save-button_profile');
+export const addButton = document.querySelector('.profile__add-button');
+export const avatarEditButton = document.querySelector('.profile__edit-pen');
 
+// попапы
+export const popupProfile = document.querySelector('.popup_profile');
+export const popupAddPlace = document.querySelector('.popup_add-place');
+export const popupPicture = document.querySelector('.popup_picture-zoom');
+export const popupAvatarEdit = document.querySelector('.popup_avatar-edit');
+export const popupDeleteCard = document.querySelector('.popup_card-delete');
+
+// формы и инпуты
 export const formProfile = document.querySelector('.popup_form-profile');
 export const nameInput = document.querySelector('.popup__input-name');
 export const jobInput = document.querySelector('.popup__input-job');
-export const elName = document.querySelector('.profile__info-name');
-export const elJob = document.querySelector('.profile__info-job');
-export const addButton = document.querySelector('.profile__add-button');
-export const popupAddPlace = document.querySelector('.popup_add-place');
 
+export const formAddPlace = document.querySelector('.popup_form-add-place');
 export const inputTitleAddPlace = document.querySelector('.popup__input-title');
 export const inputLinkAddPlace = document.querySelector('.popup__input-link');
 
-export const formAddPlace = document.querySelector('.popup_form-add-place');
+export const formAvatarEdit = document.querySelector('.popup_form-avatar-edit');
+export const inputLinkAvatar = document.querySelector('.popup__input-avatar-edit');
 
+export const formDeleteCard = document.querySelector('.popup_form-card-delete');
 
+// элементы профиля 
+export const profileAvatar = document.querySelector('.profile__avatar');
+export const elName = document.querySelector('.profile__info-name');
+export const elJob = document.querySelector('.profile__info-job');
+
+// элементы для открытия попапов и валидации 
+export const openedPopup = document.querySelector('.popup_opened');
+export const saveButtonProfile = document.querySelector('.popup__save-button_profile');
+/*
+export const apiData = {
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13/',
+    token: 'c0f1ac49-a1c2-4501-916f-6ad383af4504',
+    ownerId: ''
+  };
+*/
