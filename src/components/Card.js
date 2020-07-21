@@ -25,19 +25,13 @@ export default class Card {
     }
 
     _setLike() {
-      if (this._element.querySelector('.element__like-button').contains('.element__like-button_active')){
+      if (this._element.querySelector('.element__like-button').classList.contains('element__like-button_active')){
         this._handleAddLike();
       } else {
         this._handleDeleteLike();
       }
     }
-/*
-    _addListenerDeleteCardButton () {
-      this._element.querySelector('.element__close-button').addEventListener('click', (evt) => {
-          evt.target.closest('.element').remove();
-      });
-    }
-  */
+
     _setEventListeners() {
       this._element.querySelector('.element__like-button').addEventListener('click', () => {
         this._setLike();

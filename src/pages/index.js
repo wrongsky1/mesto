@@ -1,5 +1,4 @@
 import "./index.css";
-//import {initialCards} from '../utils/initialCards.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -30,20 +29,17 @@ import {
     popupDeleteCard,
     popupAvatarEdit,
     avatarEditButton,
-    inputLinkAvatar,
-    apiData
+    inputLinkAvatar
   } from '../utils/constants.js';
 
-// 610f4f37c4bd4ed6ef1a16e6 id 993c8682f39a3e6b3e598d71
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13',
+  //ownId: '993c8682f39a3e6b3e598d71',
   headers: {
     authorization: 'c0f1ac49-a1c2-4501-916f-6ad383af4504',
      'Content-Type': 'application/json'
   }
 });
-
-
 
 function handleCard(item) {
   const card = new Card(item, '.elements-template', {
