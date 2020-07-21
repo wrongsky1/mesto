@@ -5,6 +5,9 @@ export default class PopupWithDeleteCard extends Popup {
       super(popupSelector);
     }
 
+    setHandleSubmit(func) {
+      this._handleSubmit = func;
+    }
 
     setEventListeners() {
       super.setEventListeners();

@@ -1,11 +1,13 @@
 import "./index.css";
-import {initialCards} from '../utils/initialCards.js';
+//import {initialCards} from '../utils/initialCards.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithDeleteCard from '../components/PopupWithDeleteCard.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 import {
     options,
@@ -22,7 +24,10 @@ import {
     popupAddPlace,
     inputTitleAddPlace,
     inputLinkAddPlace,
-    formAddPlace
+    formAddPlace,
+    formAvatarEdit,
+    popupDeleteCard,
+    apiData
   } from '../utils/constants.js';
 
 function clearProfileForm() {
@@ -43,7 +48,8 @@ function clearAddPlaceForm() {
     inputTitleAddPlace.classList.remove('popup__input_type_error');
     document.querySelector('.popup__save-button_add-place').classList.add('popup__button_disabled');
 };
-  
+
+/*  
 function renderInitialCards(item) {
     const card = new Card(item, '.element-template', {
       handleCardClick: () => {
@@ -61,10 +67,33 @@ const defaultCards = new Section({
   }, '.elements');
   
 defaultCards.renderItems();
-  
-const popupWithImage = new PopupWithImage(popupPicture);
-popupWithImage.setEventListeners();
 
+
+const defaultCards = new Section ({
+  renderer: (item) => {
+    const card = new Card(api, userInfo, item, '.element-template', {
+      handleCardClick: () => {
+        popupWithImage.open(item.name, item.link);
+      },
+      handleCardDelete: () => {
+        popupWithDeleteCard.open();
+        popupWithDeleteCard.setHandleSubmit(function() {
+          api.deleteCard(card._id);
+          card.deleteCard();
+        });
+      }
+  });
+  defaultCards.addItem(card.generateCard());
+  }
+}, '.elements');
+
+api.getInitialCards()
+  .then((res) => {
+    defaultCards.renderItems(res);
+  });
+  */
+// остановился на отправке карточки на сервер 
+/*
 const addPopup = new PopupWithForm(popupAddPlace, {
     handleFormSubmit: () => {
       const newItem = {name: inputTitleAddPlace.value, link: inputLinkAddPlace.value};
@@ -100,8 +129,18 @@ addButton.addEventListener('click', () => {
     clearAddPlaceForm()
     addPopup.open();
 });
+*/
+const popupWithImage = new PopupWithImage(popupPicture);
+popupWithImage.setEventListeners();
 
-const formProfileModal = new FormValidator (options, formProfile);
-const formAddPlaceModal = new FormValidator (options, formAddPlace);
-formProfileModal.enableValidation();
-formAddPlaceModal.enableValidation();
+const popupWithDeleteCard = new PopupWithDeleteCard(popupDeleteCard);
+popupWithDeleteCard.setEventListeners();
+
+const api = new Api(apiData);
+
+const validationFormProfile = new FormValidator (options, formProfile);
+validationFormProfile.enableValidation();
+const validationFormAddPlace = new FormValidator (options, formAddPlace);
+validationFormAddPlace.enableValidation();
+const validationFormAvatar = new FormValidator (options, formAvatarEdit);
+validationFormAvatar.enableValidation();
