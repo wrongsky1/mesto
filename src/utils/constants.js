@@ -34,16 +34,9 @@ export const formDeleteCard = document.querySelector('.popup_form-card-delete');
 
 // элементы профиля 
 export const profileAvatar = document.querySelector('.profile__avatar');
-export const elName = document.querySelector('.profile__info-name');
-export const elJob = document.querySelector('.profile__info-job');
+export const profileName = document.querySelector('.profile__info-name');
+export const profileAbout = document.querySelector('.profile__info-job');
 
 // элементы для открытия попапов и валидации 
 export const openedPopup = document.querySelector('.popup_opened');
 export const saveButtonProfile = document.querySelector('.popup__save-button_profile');
-/*
-export const apiData = {
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13/',
-    token: 'c0f1ac49-a1c2-4501-916f-6ad383af4504',
-    ownerId: ''
-  };
-*/

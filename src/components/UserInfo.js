@@ -1,27 +1,26 @@
 export default class UserInfo {
-  constructor(user) {
-    this._userName = user.name;
-    this._userInfoAbout = user.text;
-    this._userAvatar = user.avatar
+  constructor({ profileName, profileAbout, profileAvatar }) {
+    this._profileName = profileName;
+    this._profileAbout = profileAbout;
+    this._profileAvatar = profileAvatar;
   }
 
   getUserInfo() {
-    const userProfileInfo = {
-      name: this._userName.textContent,
-      text: this._userInfoAbout.textContent,
-      avatar: this._userAvatar.src
+    return {
+      name: this._profileName.textContent,
+      about: this._profileAbout.textContent,
+      avatar: this._profileAvatar.src
     }
-    return userProfileInfo;
   }
 
   setUserInfo(data) {
-    this._userName.textContent = data.name;
-    this._userInfoAbout.textContent = data.job;
-    this._userAvatar.src = data.avatar;
+    this._profileName.textContent = data.name;
+    this._profileAbout.textContent = data.about;
+    this._profileAvatar.src = data.avatar;
   }
 
   setUserAvatar(data) {
-    this._userAvatar.src = data.avatar;
+    this._profileAvatar.src = data.avatar;
   }
 }
 

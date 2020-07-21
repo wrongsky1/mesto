@@ -1,14 +1,15 @@
 export default class Card {
-    constructor(ownId, data, cardSelector, { handleCardClick, handleCardDelete}){
+    constructor(ownId, data, cardSelector, { handleCardClick, handleCardDelete, handleAddLike, handleDeleteLike }) {
       this._ownId = ownId;
       this._id = data._id;
       this._data = data;
       this._like = data.likes;
       this._owner = data.owner;
       this._cardSelector = cardSelector;
-      
       this._handleCardClick = handleCardClick;
       this._handleCardDelete = handleCardDelete;
+      this._handleAddLike = handleAddLike;
+      this._handleDeleteLike = handleDeleteLike;
     }
 
     toggleLikeButton () {
@@ -23,11 +24,11 @@ export default class Card {
       this._element.querySelector('.elements__like-counter').textContent = arr.length;
     }
 
-    setLike() {
+    _setLike() {
       if (this._element.querySelector('.element__like-button').contains('.element__like-button_active')){
-        this._handleAddlike();
+        this._handleAddLike();
       } else {
-        this._handleDeletelike();
+        this._handleDeleteLike();
       }
     }
 /*
@@ -39,7 +40,7 @@ export default class Card {
   */
     _setEventListeners() {
       this._element.querySelector('.element__like-button').addEventListener('click', () => {
-        this.setLike();
+        this._setLike();
       });
       this._element.querySelector('.element__close-button').addEventListener('click', () => {
         this._handleCardDelete(this._element);
