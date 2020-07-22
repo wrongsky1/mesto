@@ -34,15 +34,17 @@ import {
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13',
-  //ownId: '993c8682f39a3e6b3e598d71',
+  ownId: '993c8682f39a3e6b3e598d71',
   headers: {
     authorization: 'c0f1ac49-a1c2-4501-916f-6ad383af4504',
      'Content-Type': 'application/json'
   }
 });
 
+const ownId = api.ownId;
+
 function handleCard(item) {
-  const card = new Card(item, '.elements-template', {
+  const card = new Card(ownId, item, { cardSelector: '.element-template',
     handleCardClick: () => {
       popupWithImage.open(item.name, item.link);
     },
@@ -111,7 +113,8 @@ api.getUserInfo()
 const editPopup = new PopupWithForm(popupProfile, {
   handleFormSubmit: () => {
     const inputValue = editPopup.getInputValues();
-    api.setUserInfo(inputValue)
+    console.log(inputValue); 
+    api.setUserInfo(inputValue) 
       .then((data) => {
         userInfo.setUserInfo(data);
       })
@@ -180,7 +183,7 @@ editButton.addEventListener('click', () => {
   
 addButton.addEventListener('click', () => {
     clearAddPlaceForm()
-    popupAddPlace.open();
+    addNewPlace.open();
 });
 
 const validationFormProfile = new FormValidator (options, formProfile);

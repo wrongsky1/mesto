@@ -1,6 +1,7 @@
 export default class Popup {
     constructor(popupSelector) {
       this._popupSelector = popupSelector;
+      this._buttonSubmit = this._popupSelector.querySelector('.popup__save-button');
     }
   
     _handleEscClose = (evt) => {
@@ -36,7 +37,7 @@ export default class Popup {
     }
 
     handleMessageLoading(message) {
-      this._buttonSubmit = this._popupSelector.querySelector('.popup__button-save');
+      //this._buttonSubmit = this._popupSelector.querySelector('.popup__button-save');
       this._buttonSubmit.textContent = message;
     }
   }

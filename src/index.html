@@ -49,9 +49,9 @@
       <div class="popup__container">
         <form class="popup__form popup_form-profile" name="profile" novalidate>
           <h2 class="popup__head">Редактировать профиль</h2>
-          <input pattern="^[A-Za-zА-Яа-яЁё\s\-]+$" autocomplete="none" class="popup__input popup__input-name" type="text" placeholder="Жак-ив Кусто" id="profile-name" name="profile-name" minlength="2" maxlength="40" required >
+          <input pattern="^[A-Za-zА-Яа-яЁё\s\-]+$" autocomplete="none" class="popup__input popup__input-name" type="text" placeholder="Жак-ив Кусто" id="profile-name" name="name" minlength="2" maxlength="40" required >
           <span id="profile-name-error" class="popup__error_visible"></span>
-          <input class="popup__input popup__input-job" type="text" placeholder="Исследователь океана" id="profile-job" name="profile-job" minlength="2" maxlength="200" required>
+          <input class="popup__input popup__input-job" type="text" placeholder="Исследователь океана" id="profile-job" name="job" minlength="2" maxlength="200" required>
           <span id="profile-job-error" class="popup__error_visible"></span>
           <button class="popup__save-button popup__save-button_profile popup__button_disabled" type="submit" disabled>Сохранить</button>
         </form>
@@ -63,9 +63,9 @@
       <div class="popup__container">
         <form class="popup__form popup_form-add-place" name="add-place">
           <h2 class="popup__head">Новое место</h2>
-          <input id="add-place-title" class="popup__input popup__input-title" type="text" placeholder="Название" name="add-place-title" minlength="1" maxlength="30" required>
+          <input id="add-place-title" class="popup__input popup__input-title" type="text" placeholder="Название" name="title" minlength="1" maxlength="30" required>
           <span id="add-place-title-error" class="popup__error_visible"></span>
-          <input id="add-place-link" class="popup__input popup__input-link" type="url" placeholder="Ссылка на картинку" name="add-place-link" required>
+          <input id="add-place-link" class="popup__input popup__input-link" type="url" placeholder="Ссылка на картинку" name="link" required>
           <span id="add-place-link-error" class="popup__error_visible"></span>
           <button class="popup__save-button popup__save-button_add-place popup__button_disabled" type="submit" disabled>Создать</button>
         </form>
@@ -85,7 +85,7 @@
       <div class="popup__container">
         <form class="popup__form popup_form-avatar-edit">
           <h2 class="popup__head">Обновить аватар</h2>
-          <input id="avatar-edit-link" class="popup__input popup__input-avatar-edit" type="url" placeholder="Ссылка на картинку" name="avatar-edit-link" required>
+          <input id="avatar-edit-link" class="popup__input popup__input-avatar-edit" type="url" placeholder="Ссылка на картинку" name="link" required>
           <span id="avatar-edit-link-error" class="popup__error_visible"></span>
           <button class="popup__save-button popup__save-button_avatar-edit popup__button_disabled" type="submit" disabled>Сохранить</button>
         </form>

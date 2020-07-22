@@ -7,7 +7,6 @@ export default class Api {
   
     _checkResponse(res){
       if (res.ok) {
-        console.log(res);
         return res.json();
       } else {
         return Promise.reject(`Ошибка: ${res.status}`);
@@ -37,8 +36,8 @@ export default class Api {
           method: 'PATCH',
           headers: this.headers,
           body: JSON.stringify({
-            name: userInfo.profile-name,
-            about: userInfo.profile-job
+            name: userInfo.name,
+            about: userInfo.job 
           })
         }
       )
@@ -53,7 +52,7 @@ export default class Api {
           method: 'PATCH',
           headers: this.headers,
           body: JSON.stringify({
-            avatar: avatar.avatar-edit-link
+            avatar: avatar.link
           })
         }
       )
@@ -79,8 +78,8 @@ export default class Api {
           method: 'POST',
           headers: this.headers,
           body: JSON.stringify({
-            name: card.add-place-title,
-            link: card.add-place-link
+            name: card.title,
+            link: card.link
           })
         }
       )

@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(ownId, data, cardSelector, { handleCardClick, handleCardDelete, handleAddLike, handleDeleteLike }) {
+    constructor(ownId, data, { cardSelector, handleCardClick, handleCardDelete, handleAddLike, handleDeleteLike }) {
       this._ownId = ownId;
       this._id = data._id;
       this._data = data;
@@ -10,6 +10,11 @@ export default class Card {
       this._handleCardDelete = handleCardDelete;
       this._handleAddLike = handleAddLike;
       this._handleDeleteLike = handleDeleteLike;
+    }
+
+    _getTemplate() {
+      const element = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
+      return element;
     }
 
     toggleLikeButton () {
@@ -45,7 +50,7 @@ export default class Card {
     }
   
     makeCard() {
-      this._element = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
+      this._element = this._getTemplate();
       this._element.querySelector('.element__picture').src = this._data.link;
       this._element.querySelector('.element__description').textContent = this._data.name;
       this._element.id = this._id;
