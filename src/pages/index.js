@@ -50,9 +50,9 @@ function handleCard(item) {
     },
     handleCardDelete: () => {
       popupWithDeleteCard.open();
-      popupWithDeleteCard.setHandleSubmit(function(){
-        api.deleteCard(card._id);
-        card.deleteCard();
+      popupWithDeleteCard.setHandleSubmit(() => {
+        api.deleteCard(item._id);
+        card.delete();
       });
     },
     handleAddLike: () => {
@@ -83,6 +83,12 @@ api.getInitialCards()
   .then((res) => {
     defaultCards.renderItems(res);
   });
+
+const popupWithImage = new PopupWithImage(popupPicture);
+popupWithImage.setEventListeners();
+  
+const popupWithDeleteCard = new PopupWithDeleteCard(popupDeleteCard);
+popupWithDeleteCard.setEventListeners();
 
 const addNewPlace = new PopupWithForm(popupAddPlace, {
   handleFormSubmit: () => {
@@ -135,13 +141,6 @@ const avatarPopup = new PopupWithForm(popupAvatarEdit, {
 
 avatarPopup.setEventListeners(); 
 
-const popupWithImage = new PopupWithImage(popupPicture);
-popupWithImage.setEventListeners();
-
-const popupWithDeleteCard = new PopupWithDeleteCard(popupDeleteCard);
-popupWithDeleteCard.setEventListeners();
-
-
 function clearAvatarEditForm() {
   inputLinkAvatar.value = '';
   document.querySelector('#avatar-edit-link-error').textContent = '';
@@ -176,7 +175,7 @@ avatarEditButton.addEventListener('click', () => {
 editButton.addEventListener('click', () => {
     const profileInfo = userInfo.getUserInfo();
     nameInput.value = profileInfo.name;
-    jobInput.value = profileInfo.job;
+    jobInput.value = profileInfo.about;
     clearProfileForm();
     editPopup.open();
 });
