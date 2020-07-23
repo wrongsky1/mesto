@@ -19,7 +19,6 @@ export default class PopupWithForm extends Popup {
     evt.preventDefault();
     this.handleMessageLoading('Сохранение...');
     this._handleFormSubmit(this.getInputValues());
-    this.close();
   }
 
   setEventListeners() {

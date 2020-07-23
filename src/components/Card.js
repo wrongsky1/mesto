@@ -23,6 +23,8 @@ export default class Card {
 
     delete() {     
       this._element.remove();
+      this._element = null;
+      this._removeEventListeners();
     }
 
     addLikeCounter(arr) {
@@ -48,6 +50,18 @@ export default class Card {
         this._handleCardClick(this._data.name, this._data.link);
       });
     }
+
+    _removeEventListeners() {
+      this._element.querySelector('.element__like-button').removeEventListener('click', () => {
+        this._setLike();
+      });
+      this._element.querySelector('.element__close-button').removeEventListener('click', () => {
+        this._handleCardDelete(this._element);
+      });
+      this._element.querySelector('.element__picture').removeEventListener('click', () => {
+        this._handleCardClick(this._data.name, this._data.link);
+      });
+    }
   
     makeCard() {
       this._element = this._getTemplate();
@@ -57,12 +71,8 @@ export default class Card {
       this._element.querySelector('.elements__like-counter').textContent = `${this._data.likes.length}`;
       if (this._data.likes.find((like) => like._id === this._ownId)) {
         this._element.querySelector('.element__like-button').classList.add('element__like-button_active');
-      };
-      if (this._data.owner._id === this._ownId) {
-        this._element.querySelector('.element__close-button').style.display = 'block';
-      } else {
-        this._element.querySelector('.element__close-button').style.display = 'none';
-      };
+      }
+      this._data.owner._id === this._ownId ? this._element.querySelector('.element__close-button').style.display = 'block' : this._element.querySelector('.element__close-button').style.display = 'none';
 
       this._setEventListeners();
   

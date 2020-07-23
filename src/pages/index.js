@@ -7,30 +7,41 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithDeleteCard from '../components/PopupWithDeleteCard.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+import { options } from '../utils/constants.js';
 
-import {
-    options,
-    popupPicture,
-    editButton,
-    popupProfile,
-    saveButtonProfile,
-    formProfile,
-    nameInput,
-    jobInput,
-    profileName,
-    profileAbout,
-    profileAvatar,
-    addButton,
-    popupAddPlace,
-    inputTitleAddPlace,
-    inputLinkAddPlace,
-    formAddPlace,
-    formAvatarEdit,
-    popupDeleteCard,
-    popupAvatarEdit,
-    avatarEditButton,
-    inputLinkAvatar
-  } from '../utils/constants.js';
+// кнопки
+const editButton = document.querySelector('.profile__edit-button');
+const addButton = document.querySelector('.profile__add-button');
+const avatarEditButton = document.querySelector('.profile__edit-pen');
+
+// попапы
+const popupProfile = document.querySelector('.popup_profile');
+const popupAddPlace = document.querySelector('.popup_add-place');
+const popupPicture = document.querySelector('.popup_picture-zoom');
+const popupAvatarEdit = document.querySelector('.popup_avatar-edit');
+const popupDeleteCard = document.querySelector('.popup_card-delete');
+
+// формы и инпуты
+const formProfile = document.querySelector('.popup_form-profile');
+const nameInput = document.querySelector('.popup__input-name');
+const jobInput = document.querySelector('.popup__input-job');
+
+const formAddPlace = document.querySelector('.popup_form-add-place');
+const inputTitleAddPlace = document.querySelector('.popup__input-title');
+const inputLinkAddPlace = document.querySelector('.popup__input-link');
+
+const formAvatarEdit = document.querySelector('.popup_form-avatar-edit');
+const inputLinkAvatar = document.querySelector('.popup__input-avatar-edit');
+const formDeleteCard = document.querySelector('.popup_form-card-delete');
+
+// элементы профиля 
+const profileAvatar = document.querySelector('.profile__avatar');
+const profileName = document.querySelector('.profile__info-name');
+const profileAbout = document.querySelector('.profile__info-job');
+
+// элементы для открытия попапов и валидации 
+const openedPopup = document.querySelector('.popup_opened');
+const saveButtonProfile = document.querySelector('.popup__save-button_profile');  
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13',
@@ -51,8 +62,11 @@ function handleCard(item) {
     handleCardDelete: () => {
       popupWithDeleteCard.open();
       popupWithDeleteCard.setHandleSubmit(() => {
-        api.deleteCard(item._id);
-        card.delete();
+        api.deleteCard(item._id)
+        .then(() => {
+          card.delete();
+        })
+        .catch((err) => console.log(err));
       });
     },
     handleAddLike: () => {
@@ -97,6 +111,12 @@ const addNewPlace = new PopupWithForm(popupAddPlace, {
       .then((item) => {
         handleCard(item);
       })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        editPopup.close();
+      })
   }
 });
 
@@ -107,7 +127,7 @@ const userFormProfile = {
   name: profileName,
   about: profileAbout,
   avatar: profileAvatar
-}
+};
 
 const userInfo = new UserInfo(userFormProfile);
 
@@ -124,8 +144,14 @@ const editPopup = new PopupWithForm(popupProfile, {
       .then((data) => {
         userInfo.setUserInfo(data);
       })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        editPopup.close();
+      })
   }
-})
+});
   
 editPopup.setEventListeners();  
 
@@ -136,53 +162,36 @@ const avatarPopup = new PopupWithForm(popupAvatarEdit, {
       .then((data) => {
         userInfo.setUserAvatar(data);
       })
+      .catch((err) => {console.log(err);
+      })
+      .finally(() => {
+        avatarPopup.close();
+      })
   }
-})
+});
 
 avatarPopup.setEventListeners(); 
 
-function clearAvatarEditForm() {
-  inputLinkAvatar.value = '';
-  document.querySelector('#avatar-edit-link-error').textContent = '';
-  inputLinkAvatar.classList.remove('popup__input_type_error');
-  document.querySelector('.popup__save-button_avatar-edit').classList.add('popup__button_disabled');
-}
-
-function clearProfileForm() {
-  saveButtonProfile.classList.remove('popup__button_disabled');
-  saveButtonProfile.removeAttribute('disabled');
-  nameInput.classList.remove('popup__input_type_error');
-  jobInput.classList.remove('popup__input_type_error');
-  document.querySelector('#profile-name-error').textContent = '';
-  document.querySelector('#profile-job-error').textContent = '';
-};
-
-function clearAddPlaceForm() {
-  inputTitleAddPlace.value = '';
-  inputLinkAddPlace.value = '';
-  document.querySelector('#add-place-title-error').textContent = '';
-  document.querySelector('#add-place-link-error').textContent = '';
-  inputLinkAddPlace.classList.remove('popup__input_type_error');
-  inputTitleAddPlace.classList.remove('popup__input_type_error');
-  document.querySelector('.popup__save-button_add-place').classList.add('popup__button_disabled');
-};
-
 avatarEditButton.addEventListener('click', () => {
-  clearAvatarEditForm();
+  validationFormAvatar.hideInputError(formAvatarEdit, inputLinkAvatar);
   avatarPopup.open();
 });
 
 editButton.addEventListener('click', () => {
-    const profileInfo = userInfo.getUserInfo();
-    nameInput.value = profileInfo.name;
-    jobInput.value = profileInfo.about;
-    clearProfileForm();
-    editPopup.open();
+  saveButtonProfile.classList.remove('popup__button_disabled');
+  saveButtonProfile.removeAttribute('disabled');
+  const profileInfo = userInfo.getUserInfo();
+  nameInput.value = profileInfo.name;
+  jobInput.value = profileInfo.about;
+  validationFormProfile.hideInputError(formProfile, nameInput);
+  validationFormProfile.hideInputError(formProfile, jobInput);
+  editPopup.open();
 });
   
 addButton.addEventListener('click', () => {
-    clearAddPlaceForm()
-    addNewPlace.open();
+  validationFormAddPlace.hideInputError (formAddPlace, inputTitleAddPlace);
+  validationFormAddPlace.hideInputError (formAddPlace, inputLinkAddPlace);
+  addNewPlace.open();
 });
 
 const validationFormProfile = new FormValidator (options, formProfile);
