@@ -115,7 +115,7 @@ const addNewPlace = new PopupWithForm(popupAddPlace, {
         console.log(err);
       })
       .finally(() => {
-        editPopup.close();
+        addNewPlace.close();
       })
   }
 });
