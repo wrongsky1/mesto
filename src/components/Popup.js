@@ -37,7 +37,6 @@ export default class Popup {
     }
 
     handleMessageLoading(message) {
-      //this._buttonSubmit = this._popupSelector.querySelector('.popup__button-save');
       this._buttonSubmit.textContent = message;
     }
   }

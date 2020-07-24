@@ -33,9 +33,9 @@ export default class Card {
 
     _setLike() {
       if (this._element.querySelector('.element__like-button').classList.contains('element__like-button_active')){
-        this._handleAddLike();
-      } else {
         this._handleDeleteLike();
+      } else {
+        this._handleAddLike();
       }
     }
 
