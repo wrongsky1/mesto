@@ -66,7 +66,7 @@ function handleCard(item) {
         .then(() => {
           card.delete();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {console.log(err)});
       });
     },
     handleAddLike: () => {
