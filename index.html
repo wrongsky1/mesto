@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="html, css, js">
+  <meta name="author" content="Разливахин Михаил">
+  <title>Mesto</title>
+<link href="main.css" rel="stylesheet"></head>
+
+<body class="body">
+  <div class="page">
+
+    <header class="header">
+      <img class="header__logo" src="d8f7088469a765c719b4737dbbca775d.png" alt="Логотип - Mesto">
+    </header>
+
+    <section class="profile">
+      <img class="profile__avatar" src="c15cb08ab8ecfaba54c6f9584bbc61a1.jpg">
+      <button class="profile__edit-pen" type="button"></button>
+      <h1 class="profile__info-name">Жак-ив Кусто</h1>
+      <button class="profile__edit-button" type="button"></button>
+      <p class="profile__info-job">Исследователь океана</p>
+      <button class="profile__add-button" type="button"></button>
+    </section>
+
+    <section class="elements">
+    </section>
+  
+    <footer class="footer">      
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>  
+
+  </div>
+
+    <template class="element-template">
+      <div class="element">
+        <img class="element__picture" alt="Изображение локации указанной в описаннии к фотографии">
+        <p class="element__description"></p>
+        <div class="element__like-container">
+          <button class="element__like-button" type="button"></button>
+          <span class="elements__like-counter">0</span>
+        </div>
+        <button class="element__close-button" type="button"></button>
+      </div>
+    </template>
+
+    <section class="popup popup_profile">
+      <div class="popup__container">
+        <form class="popup__form popup_form-profile" name="profile" novalidate>
+          <h2 class="popup__head">Редактировать профиль</h2>
+          <input pattern="^[A-Za-zА-Яа-яЁё\s\-]+$" autocomplete="none" class="popup__input popup__input-name" type="text" placeholder="Жак-ив Кусто" id="profile-name" name="name" minlength="2" maxlength="40" required >
+          <span id="profile-name-error" class="popup__error_visible"></span>
+          <input class="popup__input popup__input-job" type="text" placeholder="Исследователь океана" id="profile-job" name="job" minlength="2" maxlength="200" required>
+          <span id="profile-job-error" class="popup__error_visible"></span>
+          <button class="popup__save-button popup__save-button_profile" type="submit" disabled>Сохранить</button>
+        </form>
+        <button class="popup__close-button popup_close-profile" type="button"></button>
+      </div>
+    </section>
+
+    <section class="popup popup_add-place">
+      <div class="popup__container">
+        <form class="popup__form popup_form-add-place" name="add-place">
+          <h2 class="popup__head">Новое место</h2>
+          <input id="add-place-title" class="popup__input popup__input-title" type="text" placeholder="Название" name="title" minlength="1" maxlength="30" required>
+          <span id="add-place-title-error" class="popup__error_visible"></span>
+          <input id="add-place-link" class="popup__input popup__input-link" type="url" placeholder="Ссылка на картинку" name="link" required>
+          <span id="add-place-link-error" class="popup__error_visible"></span>
+          <button class="popup__save-button popup__save-button_add-place popup__button_disabled" type="submit" disabled>Создать</button>
+        </form>
+        <button class="popup__close-button popup_close-add-place" type="button"></button>
+      </div>
+    </section>
+
+    <section class="popup popup_background-color-dark popup_picture-zoom">
+      <div class="popup__picture">
+        <img class="popup__picture-zoom" alt="Изображение локации указанной в описаннии к фотографии">
+        <p class="popup__picture-text"></p>
+        <button class="popup__close-button popup_close-picture-zoom" type="button"></button>
+      </div>
+    </section>
+
+    <section class="popup popup_avatar-edit">
+      <div class="popup__container">
+        <form class="popup__form popup_form-avatar-edit">
+          <h2 class="popup__head">Обновить аватар</h2>
+          <input id="avatar-edit-link" class="popup__input popup__input-avatar-edit" type="url" placeholder="Ссылка на картинку" name="link" required>
+          <span id="avatar-edit-link-error" class="popup__error_visible"></span>
+          <button class="popup__save-button popup__save-button_avatar-edit popup__button_disabled" type="submit" disabled>Сохранить</button>
+        </form>
+        <button class="popup__close-button popup_close-avatar-edit" type="button"></button>
+      </div>
+    </section>
+
+    <section class="popup popup_card-delete">
+      <div class="popup__container">
+        <form class="popup__form popup_form-card-delete">
+          <h2 class="popup__head">Вы уверены?</h2>
+          <button class="popup__save-button popup__save-button_card-delete" type="submit">Да</button>
+        </form>
+        <button class="popup__close-button popup_close-card-delete" type="button"></button>
+      </div>
+    </section>
+
+<script src="main.js"></script></body>
+</html>
